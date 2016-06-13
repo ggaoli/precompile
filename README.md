@@ -42,20 +42,24 @@ Sass在市面上有一些成熟的框架，比如说`Compass`，而且有很多�
 ##Sass入门
 ###Sass环境安装
  编写scss代码，通过sass的工作引擎编译成css代码，最后的部署阶段，其实部署的是生成的css代码，从这个流程可以看出sass并不是万金流，使用命令行也好，使用服务端集成框架也好，使用图形用户界面工具也好，最关键的环节是输入css，从这里也可表现出sass就是帮助我们更快的写出具有高可维护性的css代码
-- Koala
+-  Koala
 koala 是一款桌面程序，支持 less 、 sass 、 coffeescript 即时编译，帮助 web 开发者更高效地使用 less 、 sass 、 coffeescript 开发。
 下载： [http://koala-app.com/index-zh.html][4]
-- 命令操作
+-  命令操作
 1.安装ruby环境 官网地址：[http://www.ruby-lang.org/en/][5]
 2.更改ruby包的sources
-   - gem sources --remove https://rubygems.org/
-   - gem sources --add https://ruby.taobao.org/（如果你系统不支持https，请将淘宝源更换成：gem sources -a http://gems.ruby-china.org）
-   - gem install sass
-   - gem update(更新ruby程序)
-   - gem install sass --vertion=3.3
-   - gem list (列出本地安装的所有ruby程序包)
-   - gem uninstall sass --vertion=3.3.0(删除相应的程序包)
+   -  **gem sources --remove https://rubygems.org/**
+   -  **gem sources --add https://ruby.taobao.org/** （如果你系统不支持https，请将淘宝源更换成：gem sources -a http://gems.ruby-china.org）
+   - **gem install sass**
+   - **gem update**(更新ruby程序)
+   - **gem install sass --vertion=3.3**
+   - **gem list** (列出本地安装的所有ruby程序包)
+   - **gem uninstall sass --vertion=3.3.0**(删除相应的程序包)
+   - **vim main.scss**(创建scss文件)
+   - **sass main.scss main.css**(将.scss文件编译成.css文件)
+  
 
+###Compass安装以及使用
 
 ###Sass调试
 > 1.Koala上点击相应的文件，然后就会出现右边的编译选项，即可选择是否开启source map，debug info <br>
