@@ -58,9 +58,26 @@ koala 是一款桌面程序，支持 less 、 sass 、 coffeescript 即时编译
    - **gem uninstall sass --vertion=3.3.0**(删除相应的程序包)
    - **vim main.scss**(创建scss文件)
    - **sass main.scss main.css**(将.scss文件编译成.css文件)
+   - mkdir workspace(创建工作区)
+   - cd workspace(进入工作区)
   
 
 ###Compass安装以及使用
+
+ - 介绍
+ Compass是一个强大的Sass框架，能够利用它写出可维护性更高的样式表。
+Compass由三个主要部分组成：混合器和实用工具的类库，能够集成到应用开发环境中的开发系统，以及一个用于构建框架和扩展的平台。<br>
+Compass自身包含了很多由Sass混合器和函数构成的模块，所有的这些模块在Compass的官网上都有详细的说明和示例。<br>
+这些库会帮助你解决跨浏览器兼容问题，以及提供给你很多已经被证明过的优秀模式，比如说重置、网格布局、列表样式、表格辅助器等。
+ - 安装
+ 使用命令行：  gem install compass（这样就创建好了）
+.e.g.<br>
+命令行操作
+创建compass项目的文件 compass create mallApp
+进入项目文件  cd mallApp
+查看文件结构 tree/f (dir)
+打开文件  直接输入文件名
+放回上一目录 cd..
 
 ###Sass调试
 > 1.Koala上点击相应的文件，然后就会出现右边的编译选项，即可选择是否开启source map，debug info <br>
