@@ -1,4 +1,5 @@
 # CSS预编译
+---
 ## 为什么要学习css预编译
 CSS入门简单，深入就比较难，虽然样式简单，但难以维护。需要考虑大量的样式，覆盖、权重和很多!important。
 ## 什么是 css预处理器
@@ -57,9 +58,9 @@ koala 是一款桌面程序，支持 less 、 sass 、 coffeescript 即时编译
 
 
 ###Sass调试
-> 1.Koala上点击相应的文件，然后就会出现右边的编译选项，即可选择是否开启source map，debug info
-> 2.打开Chrome浏览器，F12打开调试面板，点击调试面板右上角的齿轮图标打开设置，在general选项中勾选Enable CSS source map 和 Auto-reload generated CSS
-> 3.开启--sourcemap编译，f12打开调试面板，就可以看到原先右边的css文件变成了我们现在的scss文件
+> 1.Koala上点击相应的文件，然后就会出现右边的编译选项，即可选择是否开启source map，debug info <br>
+> 2.打开Chrome浏览器，F12打开调试面板，点击调试面板右上角的齿轮图标打开设置，在general选项中勾选Enable CSS source map 和 Auto-reload generated CSS<br>
+> 3.开启--sourcemap编译，f12打开调试面板，就可以看到原先右边的css文件变成了我们现在的scss文件<br>
 > 4.点击scss文件，会跳到source里面的scss源文件，现在可以在里面进行修改，修改完成后可以右键选择save或save as命令，然后替换我们本地的scss源文件，刷新chrome就可以看到变化（注意，解析样式需要一定时间）。以后只要ctrl+s保存修改就可以在浏览器中看到修改效果了。
 
 
