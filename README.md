@@ -62,7 +62,7 @@ koala 是一款桌面程序，支持 less 、 sass 、 coffeescript 即时编译
    - cd workspace(进入工作区)
   
 
-###Compass安装以及使用
+###Compass安装
 
  - 介绍
  Compass是一个强大的Sass框架，能够利用它写出可维护性更高的样式表。
@@ -79,6 +79,236 @@ Compass自身包含了很多由Sass混合器和函数构成的模块，所有的
 打开文件  直接输入文件名
 放回上一目录 cd..
 
+###Sass语法入门
+####sass和scss的区别：
+sass有两种语法，一种是`sass`（缩排写法）,这种语法的文件需要以.sass扩展名。另一种则是在sass的基础上，对css3扩从的`scss`，这种语法的文件需要以.scss扩展名。<br>
+第一种sass语法，是不使用花国号，对空格 换行 敏感，通过缩排的方式来表达选择符，语法特点是更加简洁，像习惯编写ruby phthon的人可以可能会比较喜欢。<br>
+第二种scss语法，延续之前的css语法，大多数地道的前端团队会选择scss
+```
+/*sass语法*/
+h3
+  color: #eee
+  font-size:12px
+  
+/*scss语法*/
+h3{
+  color: #eee;
+  font-size:12px;
+}
+```
+使用命令行转换格式： sass-convert main.scss main.sass
+在开始之前，我们先是用compass创建一个测试项目
+compass create compass-syntax
+监听当前目录下sass文件的变化
+cd compass-syntax
+compass watch
+####嵌套(Nesting)
+```
+/***选择器嵌套***/
+ .recom-r{
+      ul{
+        li{
+        color:red;
+          a{
+            border: 1px 0  0 #ddd;
+          }
+          &:nth-child(1) a,&:nth-child(2) a{
+            border-right:none;
+          }
+          &:nth-child(3) a,&:nth-child(4) a{
+            border-bottom:none;
+          }
+        }
+      }
+    }
+    //编译为
+    .recom-r ul li{
+     color:red;}
+    .recom-r ul li a {
+     border-bottom: 1px solid #ddd; }
+   .recom-r ul li:nth-child(1) a, .products-recom .modcon .recom-r ul li:nth-child(2) a {
+     border-right: none; }
+  .recom-r ul li:nth-child(3) a, .products-recom .modcon .recom-r ul li:nth-child(4) a {
+     border-bottom: none; }
+     
+     
+     /***属性嵌套嵌套***/
+     .abc{
+      border:{
+        style:solid;
+        left:{
+         width:4px;
+         color:red;
+        }
+        right{
+          width:1px;
+          color:blue;
+        }
+      }
+     }
+     //编译为
+     .abc{
+       border-style: solid;
+       border-left-width: 4px;
+       border-left-color: red;
+       border-right-width: 1px;
+       border-right-color: blue; 
+     }
+```
+
+####导入 @import
+```
+@import "reset" //这里是简写 _reset.scss,以下划线开头的scss文件默认不自动编译出来，是专门用来导入的文件
+```
+
+####变量 $
+```
+/***默认变量***/
+$defaultColor: #2898fd;
+body{
+  color:$defaultColor;
+}
+//解析如下
+body{
+  color:#2898fd;
+}
+/***多值变量***/
+$aColor:red blue yellow;
+a{
+  &:hover{color:$aColor,1}
+  &:active{color:$aColor,2}
+}
+//解析如下
+a:hover{color:red}
+a:active{color:blue}
+```
+
+####注释
+        /* */  标准的css注释方式 
+        // 这种单行注释是不会解析到css文件中 
+        
+####混合(mixin)        
+```
+@mixin transition($transition){
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  transition: $transition;
+}
+a{
+ @include transition(all 0.2s linear);
+}
+//编译为
+a{
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+```
+####扩展/继承@extent
+```
+.a{
+  color:red;
+  font-size:12px;
+  padding:10px;
+}
+.b{
+   @extent .abc;
+   margin:10px;
+}
+.c{
+   @extent .abc;
+  margin:20px;
+}
+//编译为
+.a, .b , .c{
+  color:red;
+  font-size:12px;
+  padding:10px;
+}
+.b{
+   margin:10px;
+}
+.c{
+   margin:20px;
+}
+```
+####占位选择器%
+```
+%clear{
+  &:before,
+  &:before, {
+    content: "";
+    display: table;
+    font: 0/0 a;
+  }
+  &:after {
+    clear: both;
+  }
+}
+.clearfix{
+  @extent %clear;
+}
+.row{
+  @extent %clear;
+  width:1200px;
+  margin:0 aut0;
+}
+//编译为
+.row, .clearfix:before, .clearfix:after{
+    content: "";
+    display: table;
+    font: 0/0 a;
+}
+ .clearfix:after, .row:after{
+    clear: both;
+ }
+ .row{
+  width:1200px;
+  margin:0 aut0;
+ }
+```
+####控制指令
+```
+/******@if******/
+$type: monster;
+p {
+  @if $type == ocean {
+    color: blue;
+  } @else if $type == matador {
+    color: red;
+  } @else if $type == monster {
+    color: green;
+  } @else {
+    color: black;
+  }
+}
+//编译为
+p {
+    color: green; 
+  }
+  
+/******@while******/
+$i: 6;
+@while $i > 0 {
+  .item-#{$i} { width: 2em * $i; }
+  $i: $i - 2;
+}
+//编译为
+.item-6 {
+    width: 12em;
+}
+.item-4 {
+    width: 8em;
+}
+.item-2 {
+    width: 4em; 
+}
+
+```
+**注：详细参见[Sass官网][6]**
+
 ###Sass调试
 > 1.Koala上点击相应的文件，然后就会出现右边的编译选项，即可选择是否开启source map，debug info <br>
 > 2.打开Chrome浏览器，F12打开调试面板，点击调试面板右上角的齿轮图标打开设置，在general选项中勾选Enable CSS source map 和 Auto-reload generated CSS<br>
@@ -86,19 +316,9 @@ Compass自身包含了很多由Sass混合器和函数构成的模块，所有的
 > 4.点击scss文件，会跳到source里面的scss源文件，现在可以在里面进行修改，修改完成后可以右键选择save或save as命令，然后替换我们本地的scss源文件，刷新chrome就可以看到变化（注意，解析样式需要一定时间）。以后只要ctrl+s保存修改就可以在浏览器中看到修改效果了。
 
 
-
-
-
-
-
-
-
-
-
-
-
   [1]: http://sass-lang.com
   [2]: http://lesscss.org
   [3]: http://learnboost.github.com/stylus
   [4]: http://koala-app.com/index-zh.html
   [5]: http://www.ruby-lang.org/en/
+  [6]: http://sass-lang.com/
