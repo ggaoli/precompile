@@ -38,16 +38,25 @@ Sass较Less略强大一些
 Sass在市面上有一些成熟的框架，比如说`Compass`，而且有很多框架也在使用Sass，比如说Foundation，bootstrap也开始使用sass
 
 ###3、Sass和Less语法对比
+> * 混入(Mixins)——class中的class；
+> * 参数混入——可以传递参数的class，就像函数一样；
+> * 嵌套规则——Class中嵌套class，从而减少重复的代码；
+> * 运算——CSS中用上数学；
+> * 颜色功能——可以编辑颜色；
+> * 名字空间(namespace)——分组样式，从而可以被调用；
+> * 作用域——局部修改样式；
+> * JavaScript 赋值——在CSS中使用JavaScript表达式赋值。
 
 ##Sass入门
 ###Sass环境安装
  编写scss代码，通过sass的工作引擎编译成css代码，最后的部署阶段，其实部署的是生成的css代码，从这个流程可以看出sass并不是万金流，使用命令行也好，使用服务端集成框架也好，使用图形用户界面工具也好，最关键的环节是输入css，从这里也可表现出sass就是帮助我们更快的写出具有高可维护性的css代码<br>
 
- - koala
+ - koala<br>
 koala 是一款桌面程序，支持 less 、 sass 、 coffeescript 即时编译，帮助 web 开发者更高效地使用 less 、 sass 、 coffeescript 开发。
 下载： [http://koala-app.com/index-zh.html][4]
- - 命令操作
+ - 命令操作<br>
 1.安装ruby环境 官网地址：[http://www.ruby-lang.org/en/][5]
+下载RubyInstaller后记得勾选 add ruby executables to your PATH 选项
 2.更改ruby包的sources
    -  **gem sources --remove https://rubygems.org/**
    -  **gem sources --add https://ruby.taobao.org/** （如果你系统不支持https，请将淘宝源更换成：gem sources -a http://gems.ruby-china.org）
@@ -60,24 +69,6 @@ koala 是一款桌面程序，支持 less 、 sass 、 coffeescript 即时编译
    - **sass main.scss main.css**(将.scss文件编译成.css文件)
    - mkdir workspace(创建工作区)
    - cd workspace(进入工作区)
-  
-
-###Compass安装
-
- - 介绍
- Compass是一个强大的Sass框架，能够利用它写出可维护性更高的样式表。
-Compass由三个主要部分组成：混合器和实用工具的类库，能够集成到应用开发环境中的开发系统，以及一个用于构建框架和扩展的平台。<br>
-Compass自身包含了很多由Sass混合器和函数构成的模块，所有的这些模块在Compass的官网上都有详细的说明和示例。<br>
-这些库会帮助你解决跨浏览器兼容问题，以及提供给你很多已经被证明过的优秀模式，比如说重置、网格布局、列表样式、表格辅助器等。
- - 安装
- 使用命令行：  gem install compass（这样就创建好了）
-.e.g.<br>
-命令行操作
-创建compass项目的文件 compass create mallApp
-进入项目文件  cd mallApp
-查看文件结构 tree/f (dir)
-打开文件  直接输入文件名
-放回上一目录 cd..
 
 ###Sass语法入门
 ####sass和scss的区别：
@@ -164,23 +155,25 @@ compass watch
 ####变量 $
 ```
 /***默认变量***/
-$defaultColor: #2898fd;
+$default-color: #2898fd;
 body{
-  color:$defaultColor;
+  color:$default-color;
 }
 //解析如下
 body{
   color:#2898fd;
 }
 /***多值变量***/
-$aColor:red blue yellow;
+$a-color:red blue yellow;
 a{
-  &:hover{color:$aColor,1}
-  &:active{color:$aColor,2}
+  &:hover{color:$a-color,1}
+  &:active{color:$a-color,2}
 }
 //解析如下
 a:hover{color:red}
 a:active{color:blue}
+
+注：compass中采用中划线的方式命名
 ```
 
 ####注释
@@ -204,6 +197,22 @@ a{
   -moz-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
   transition: all 0.2s linear;
+}
+```
+####运算
+```
+body{
+  width:100%;
+}
+article{
+  width:600px / 1200px *100%;
+}
+//编译为
+body{
+  width:100%;
+}
+article{
+  width:50%；
 }
 ```
 ####扩展/继承@extent
@@ -307,13 +316,69 @@ $i: 6;
 }
 
 ```
+####选择器
+> 子组合选择器 ` > ` :选择一个元素的直接子元素
+>同层相邻组合选择器 `+` :选择紧跟在后面的同级元素
+>同层全体组合选择器 `~` :选择所有跟在后的同层元素
+
+####颜色函数
+```
+$ sass -i
+>> rgb(200,40,88) //根据r:200,g:40,b:88计算出一个十六进制颜色值
+得出：#c82858
+>> rgba(#c82858,.65) //根据#c82858的65%透明度计算出一个rgba颜色值
+得出：rgba(200, 40, 88, 0.65)
+>> red(#c82858) //从#c82858颜色值中得到红色值200
+得出：200
+>> green(#c82858) //从#c82858颜色值中得到绿色值40
+得出：40
+>> blue(#c82858) //从#c82858颜色值中得到蓝色值88
+得出：88
+>> mix(#c82858,rgba(200,40,80,.65),.3) //把#c82858和rgba(200,40,88,.65)两颜色按比例混合得到一个新颜色
+rgba(200, 40, 80, 0.65105)
+>> lighten(red,10%)//将red颜色安装亮度值增加10%
+得出：#ff3333
+>> darken(red,10%)//将red颜色安装亮度值变暗10%
+得出：#cc0000
+>>complement(red)//获取red颜色的补充色
+得出#00ffff
+...
+```
 **注：详细参见[Sass官网][6]**
 
-###Sass调试
+##Compass框架
+###介绍
+>Compass是一个强大的Sass框架，能够利用它写出可维护性更高的样式表。
+Compass由三个主要部分组成：混合器和实用工具的类库，能够集成到应用开发环境中的开发系统，以及一个用于构建框架和扩展的平台。<br>
+Compass自身包含了很多由Sass混合器和函数构成的模块，所有的这些模块在Compass的官网上都有详细的说明和示例。<br>
+这些库会帮助你解决跨浏览器兼容问题，以及提供给你很多已经被证明过的优秀模式，比如说重置、网格布局、列表样式、表格辅助器等。
+注：[Comapass官网][7]
+###安装与使用
+
+使用命令行：  gem install compass（这样就创建好了）
+.e.g.<br>
+比如说先创建一个文件夹 mkdir compasstext,
+点击进入这个文件 cd compasstext,
+创建compass项目的文件 compass create mallApp,
+点击进入这个文件 cd mallApp,
+这个时候我们想要清楚 可以输入 compass clean
+如果想重新开始编译 可以输入 compass compile
+> 常见的命令操作
+自动编译：compass watch
+清除： compass clean
+重新开始编译：compass compile
+
+
+###安装
+
+##Sass调试
+###1、Koala调试方式
 > 1.Koala上点击相应的文件，然后就会出现右边的编译选项，即可选择是否开启source map，debug info <br>
 > 2.打开Chrome浏览器，F12打开调试面板，点击调试面板右上角的齿轮图标打开设置，在general选项中勾选Enable CSS source map 和 Auto-reload generated CSS<br>
 > 3.开启--sourcemap编译，f12打开调试面板，就可以看到原先右边的css文件变成了我们现在的scss文件<br>
 > 4.点击scss文件，会跳到source里面的scss源文件，现在可以在里面进行修改，修改完成后可以右键选择save或save as命令，然后替换我们本地的scss源文件，刷新chrome就可以看到变化（注意，解析样式需要一定时间）。以后只要ctrl+s保存修改就可以在浏览器中看到修改效果了。
+
+###2、命令行调试方式
 
 
   [1]: http://sass-lang.com
@@ -322,3 +387,4 @@ $i: 6;
   [4]: http://koala-app.com/index-zh.html
   [5]: http://www.ruby-lang.org/en/
   [6]: http://sass-lang.com/
+  [7]: http://compass-style.org
