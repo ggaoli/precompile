@@ -19,7 +19,12 @@
     </section>
 
     <section class="main-content">
-      <h2>
+      <h1>
+<a id="css预编译" class="anchor" href="#css%E9%A2%84%E7%BC%96%E8%AF%91" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CSS预编译</h1>
+
+<hr>
+
+<h2>
 <a id="为什么要学习css预编译" class="anchor" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6%E4%B9%A0css%E9%A2%84%E7%BC%96%E8%AF%91" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>为什么要学习css预编译</h2>
 
 <p>CSS入门简单，深入就比较难，虽然样式简单，但难以维护。需要考虑大量的样式，覆盖、权重和很多!important。</p>
@@ -94,23 +99,321 @@ Sass在市面上有一些成熟的框架，比如说<code>Compass</code>，而�
 <h3>
 <a id="sass环境安装" class="anchor" href="#sass%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sass环境安装</h3>
 
+<p>编写scss代码，通过sass的工作引擎编译成css代码，最后的部署阶段，其实部署的是生成的css代码，从这个流程可以看出sass并不是万金流，使用命令行也好，使用服务端集成框架也好，使用图形用户界面工具也好，最关键的环节是输入css，从这里也可表现出sass就是帮助我们更快的写出具有高可维护性的css代码<br></p>
+
 <ul>
-<li>Koala
+<li>koala
 koala 是一款桌面程序，支持 less 、 sass 、 coffeescript 即时编译，帮助 web 开发者更高效地使用 less 、 sass 、 coffeescript 开发。
 下载： <a href="http://koala-app.com/index-zh.html">http://koala-app.com/index-zh.html</a>
 </li>
-<li><a href="http://www.ruby-lang.org/en/">http://www.ruby-lang.org/en/</a></li>
+<li>命令操作
+1.安装ruby环境 官网地址：<a href="http://www.ruby-lang.org/en/">http://www.ruby-lang.org/en/</a>
+2.更改ruby包的sources
+
+<ul>
+<li> <strong>gem sources --remove <a href="https://rubygems.org/">https://rubygems.org/</a></strong>
+</li>
+<li> <strong>gem sources --add <a href="https://ruby.taobao.org/">https://ruby.taobao.org/</a></strong> （如果你系统不支持https，请将淘宝源更换成：gem sources -a <a href="http://gems.ruby-china.org%EF%BC%89">http://gems.ruby-china.org）</a>
+</li>
+<li><strong>gem install sass</strong></li>
+<li>
+<strong>gem update</strong>(更新ruby程序)</li>
+<li><strong>gem install sass --vertion=3.3</strong></li>
+<li>
+<strong>gem list</strong> (列出本地安装的所有ruby程序包)</li>
+<li>
+<strong>gem uninstall sass --vertion=3.3.0</strong>(删除相应的程序包)</li>
+<li>
+<strong>vim main.scss</strong>(创建scss文件)</li>
+<li>
+<strong>sass main.scss main.css</strong>(将.scss文件编译成.css文件)</li>
+<li>mkdir workspace(创建工作区)</li>
+<li>cd workspace(进入工作区)</li>
 </ul>
+</li>
+</ul>
+
+<h3>
+<a id="compass安装" class="anchor" href="#compass%E5%AE%89%E8%A3%85" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compass安装</h3>
+
+<ul>
+<li>介绍
+Compass是一个强大的Sass框架，能够利用它写出可维护性更高的样式表。
+Compass由三个主要部分组成：混合器和实用工具的类库，能够集成到应用开发环境中的开发系统，以及一个用于构建框架和扩展的平台。<br>
+Compass自身包含了很多由Sass混合器和函数构成的模块，所有的这些模块在Compass的官网上都有详细的说明和示例。<br>
+这些库会帮助你解决跨浏览器兼容问题，以及提供给你很多已经被证明过的优秀模式，比如说重置、网格布局、列表样式、表格辅助器等。</li>
+<li>安装
+使用命令行：  gem install compass（这样就创建好了）
+.e.g.<br>
+命令行操作
+创建compass项目的文件 compass create mallApp
+进入项目文件  cd mallApp
+查看文件结构 tree/f (dir)
+打开文件  直接输入文件名
+放回上一目录 cd..</li>
+</ul>
+
+<h3>
+<a id="sass语法入门" class="anchor" href="#sass%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sass语法入门</h3>
+
+<h4>
+<a id="sass和scss的区别" class="anchor" href="#sass%E5%92%8Cscss%E7%9A%84%E5%8C%BA%E5%88%AB" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>sass和scss的区别：</h4>
+
+<p>sass有两种语法，一种是<code>sass</code>（缩排写法）,这种语法的文件需要以.sass扩展名。另一种则是在sass的基础上，对css3扩从的<code>scss</code>，这种语法的文件需要以.scss扩展名。<br>
+第一种sass语法，是不使用花国号，对空格 换行 敏感，通过缩排的方式来表达选择符，语法特点是更加简洁，像习惯编写ruby phthon的人可以可能会比较喜欢。<br>
+第二种scss语法，延续之前的css语法，大多数地道的前端团队会选择scss</p>
+
+<pre><code>/*sass语法*/
+h3
+  color: #eee
+  font-size:12px
+
+/*scss语法*/
+h3{
+  color: #eee;
+  font-size:12px;
+}
+</code></pre>
+
+<p>使用命令行转换格式： sass-convert main.scss main.sass
+在开始之前，我们先是用compass创建一个测试项目
+compass create compass-syntax
+监听当前目录下sass文件的变化
+cd compass-syntax
+compass watch</p>
+
+<h4>
+<a id="嵌套nesting" class="anchor" href="#%E5%B5%8C%E5%A5%97nesting" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>嵌套(Nesting)</h4>
+
+<pre><code>/***选择器嵌套***/
+ .recom-r{
+      ul{
+        li{
+        color:red;
+          a{
+            border: 1px 0  0 #ddd;
+          }
+          &amp;:nth-child(1) a,&amp;:nth-child(2) a{
+            border-right:none;
+          }
+          &amp;:nth-child(3) a,&amp;:nth-child(4) a{
+            border-bottom:none;
+          }
+        }
+      }
+    }
+    //编译为
+    .recom-r ul li{
+     color:red;}
+    .recom-r ul li a {
+     border-bottom: 1px solid #ddd; }
+   .recom-r ul li:nth-child(1) a, .products-recom .modcon .recom-r ul li:nth-child(2) a {
+     border-right: none; }
+  .recom-r ul li:nth-child(3) a, .products-recom .modcon .recom-r ul li:nth-child(4) a {
+     border-bottom: none; }
+
+
+     /***属性嵌套嵌套***/
+     .abc{
+      border:{
+        style:solid;
+        left:{
+         width:4px;
+         color:red;
+        }
+        right{
+          width:1px;
+          color:blue;
+        }
+      }
+     }
+     //编译为
+     .abc{
+       border-style: solid;
+       border-left-width: 4px;
+       border-left-color: red;
+       border-right-width: 1px;
+       border-right-color: blue; 
+     }
+</code></pre>
+
+<h4>
+<a id="导入-import" class="anchor" href="#%E5%AF%BC%E5%85%A5-import" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>导入 <a href="https://github.com/import" class="user-mention">@import</a>
+</h4>
+
+<pre><code>@import "reset" //这里是简写 _reset.scss,以下划线开头的scss文件默认不自动编译出来，是专门用来导入的文件
+</code></pre>
+
+<h4>
+<a id="变量-" class="anchor" href="#%E5%8F%98%E9%87%8F-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>变量 $</h4>
+
+<pre><code>/***默认变量***/
+$defaultColor: #2898fd;
+body{
+  color:$defaultColor;
+}
+//解析如下
+body{
+  color:#2898fd;
+}
+/***多值变量***/
+$aColor:red blue yellow;
+a{
+  &amp;:hover{color:$aColor,1}
+  &amp;:active{color:$aColor,2}
+}
+//解析如下
+a:hover{color:red}
+a:active{color:blue}
+</code></pre>
+
+<h4>
+<a id="注释" class="anchor" href="#%E6%B3%A8%E9%87%8A" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>注释</h4>
+
+<pre><code>    /* */  标准的css注释方式 
+    // 这种单行注释是不会解析到css文件中 
+</code></pre>
+
+<h4>
+<a id="混合mixin" class="anchor" href="#%E6%B7%B7%E5%90%88mixin" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>混合(mixin)</h4>
+
+<pre><code>@mixin transition($transition){
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  transition: $transition;
+}
+a{
+ @include transition(all 0.2s linear);
+}
+//编译为
+a{
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+</code></pre>
+
+<h4>
+<a id="扩展继承extent" class="anchor" href="#%E6%89%A9%E5%B1%95%E7%BB%A7%E6%89%BFextent" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>扩展/继承<a href="https://github.com/extent" class="user-mention">@extent</a>
+</h4>
+
+<pre><code>.a{
+  color:red;
+  font-size:12px;
+  padding:10px;
+}
+.b{
+   @extent .abc;
+   margin:10px;
+}
+.c{
+   @extent .abc;
+  margin:20px;
+}
+//编译为
+.a, .b , .c{
+  color:red;
+  font-size:12px;
+  padding:10px;
+}
+.b{
+   margin:10px;
+}
+.c{
+   margin:20px;
+}
+</code></pre>
+
+<h4>
+<a id="占位选择器" class="anchor" href="#%E5%8D%A0%E4%BD%8D%E9%80%89%E6%8B%A9%E5%99%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>占位选择器%</h4>
+
+<pre><code>%clear{
+  &amp;:before,
+  &amp;:before, {
+    content: "";
+    display: table;
+    font: 0/0 a;
+  }
+  &amp;:after {
+    clear: both;
+  }
+}
+.clearfix{
+  @extent %clear;
+}
+.row{
+  @extent %clear;
+  width:1200px;
+  margin:0 aut0;
+}
+//编译为
+.row, .clearfix:before, .clearfix:after{
+    content: "";
+    display: table;
+    font: 0/0 a;
+}
+ .clearfix:after, .row:after{
+    clear: both;
+ }
+ .row{
+  width:1200px;
+  margin:0 aut0;
+ }
+</code></pre>
+
+<h4>
+<a id="控制指令" class="anchor" href="#%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>控制指令</h4>
+
+<pre><code>/******@if******/
+$type: monster;
+p {
+  @if $type == ocean {
+    color: blue;
+  } @else if $type == matador {
+    color: red;
+  } @else if $type == monster {
+    color: green;
+  } @else {
+    color: black;
+  }
+}
+//编译为
+p {
+    color: green; 
+  }
+
+/******@while******/
+$i: 6;
+@while $i &gt; 0 {
+  .item-#{$i} { width: 2em * $i; }
+  $i: $i - 2;
+}
+//编译为
+.item-6 {
+    width: 12em;
+}
+.item-4 {
+    width: 8em;
+}
+.item-2 {
+    width: 4em; 
+}
+
+</code></pre>
+
+<p><strong>注：详细参见<a href="http://sass-lang.com/">Sass官网</a></strong></p>
 
 <h3>
 <a id="sass调试" class="anchor" href="#sass%E8%B0%83%E8%AF%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sass调试</h3>
 
-<pre><code>1.Koala上点击相应的文件，然后就会出现右边的编译选项，即可选择是否开启source map，debug info
-
-2.打开Chrome浏览器，F12打开调试面板，点击调试面板右上角的齿轮图标打开设置，在general选项中勾选Enable CSS source map 和 Auto-reload generated CSS
-3.开启--sourcemap编译，f12打开调试面板，就可以看到原先右边的css文件变成了我们现在的scss文件
-4.点击scss文件，会跳到source里面的scss源文件，现在可以在里面进行修改，修改完成后可以右键选择save或save as命令，然后替换我们本地的scss源文件，刷新chrome就可以看到变化（注意，解析样式需要一定时间）。以后只要ctrl+s保存修改就可以在浏览器中看到修改效果了。
-</code></pre>
+<blockquote>
+<p>1.Koala上点击相应的文件，然后就会出现右边的编译选项，即可选择是否开启source map，debug info <br>
+2.打开Chrome浏览器，F12打开调试面板，点击调试面板右上角的齿轮图标打开设置，在general选项中勾选Enable CSS source map 和 Auto-reload generated CSS<br>
+3.开启--sourcemap编译，f12打开调试面板，就可以看到原先右边的css文件变成了我们现在的scss文件<br>
+4.点击scss文件，会跳到source里面的scss源文件，现在可以在里面进行修改，修改完成后可以右键选择save或save as命令，然后替换我们本地的scss源文件，刷新chrome就可以看到变化（注意，解析样式需要一定时间）。以后只要ctrl+s保存修改就可以在浏览器中看到修改效果了。</p>
+</blockquote>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/ggaoli/precompile">css预编译</a> is maintained by <a href="https://github.com/ggaoli">ggaoli</a>.</span>
