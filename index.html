@@ -93,6 +93,19 @@ Sass在市面上有一些成熟的框架，比如说<code>Compass</code>，而�
 <h3>
 <a id="3sass和less语法对比" class="anchor" href="#3sass%E5%92%8Cless%E8%AF%AD%E6%B3%95%E5%AF%B9%E6%AF%94" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3、Sass和Less语法对比</h3>
 
+<blockquote>
+<ul>
+<li>混入(Mixins)——class中的class；</li>
+<li>参数混入——可以传递参数的class，就像函数一样；</li>
+<li>嵌套规则——Class中嵌套class，从而减少重复的代码；</li>
+<li>运算——CSS中用上数学；</li>
+<li>颜色功能——可以编辑颜色；</li>
+<li>名字空间(namespace)——分组样式，从而可以被调用；</li>
+<li>作用域——局部修改样式；</li>
+<li>JavaScript 赋值——在CSS中使用JavaScript表达式赋值。</li>
+</ul>
+</blockquote>
+
 <h2>
 <a id="sass入门" class="anchor" href="#sass%E5%85%A5%E9%97%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sass入门</h2>
 
@@ -102,12 +115,13 @@ Sass在市面上有一些成熟的框架，比如说<code>Compass</code>，而�
 <p>编写scss代码，通过sass的工作引擎编译成css代码，最后的部署阶段，其实部署的是生成的css代码，从这个流程可以看出sass并不是万金流，使用命令行也好，使用服务端集成框架也好，使用图形用户界面工具也好，最关键的环节是输入css，从这里也可表现出sass就是帮助我们更快的写出具有高可维护性的css代码<br></p>
 
 <ul>
-<li>koala
+<li>koala<br>
 koala 是一款桌面程序，支持 less 、 sass 、 coffeescript 即时编译，帮助 web 开发者更高效地使用 less 、 sass 、 coffeescript 开发。
 下载： <a href="http://koala-app.com/index-zh.html">http://koala-app.com/index-zh.html</a>
 </li>
-<li>命令操作
+<li>命令操作<br>
 1.安装ruby环境 官网地址：<a href="http://www.ruby-lang.org/en/">http://www.ruby-lang.org/en/</a>
+下载RubyInstaller后记得勾选 add ruby executables to your PATH 选项
 2.更改ruby包的sources
 
 <ul>
@@ -131,26 +145,6 @@ koala 是一款桌面程序，支持 less 、 sass 、 coffeescript 即时编译
 <li>cd workspace(进入工作区)</li>
 </ul>
 </li>
-</ul>
-
-<h3>
-<a id="compass安装" class="anchor" href="#compass%E5%AE%89%E8%A3%85" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compass安装</h3>
-
-<ul>
-<li>介绍
-Compass是一个强大的Sass框架，能够利用它写出可维护性更高的样式表。
-Compass由三个主要部分组成：混合器和实用工具的类库，能够集成到应用开发环境中的开发系统，以及一个用于构建框架和扩展的平台。<br>
-Compass自身包含了很多由Sass混合器和函数构成的模块，所有的这些模块在Compass的官网上都有详细的说明和示例。<br>
-这些库会帮助你解决跨浏览器兼容问题，以及提供给你很多已经被证明过的优秀模式，比如说重置、网格布局、列表样式、表格辅助器等。</li>
-<li>安装
-使用命令行：  gem install compass（这样就创建好了）
-.e.g.<br>
-命令行操作
-创建compass项目的文件 compass create mallApp
-进入项目文件  cd mallApp
-查看文件结构 tree/f (dir)
-打开文件  直接输入文件名
-放回上一目录 cd..</li>
 </ul>
 
 <h3>
@@ -248,23 +242,25 @@ compass watch</p>
 <a id="变量-" class="anchor" href="#%E5%8F%98%E9%87%8F-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>变量 $</h4>
 
 <pre><code>/***默认变量***/
-$defaultColor: #2898fd;
+$default-color: #2898fd;
 body{
-  color:$defaultColor;
+  color:$default-color;
 }
 //解析如下
 body{
   color:#2898fd;
 }
 /***多值变量***/
-$aColor:red blue yellow;
+$a-color:red blue yellow;
 a{
-  &amp;:hover{color:$aColor,1}
-  &amp;:active{color:$aColor,2}
+  &amp;:hover{color:$a-color,1}
+  &amp;:active{color:$a-color,2}
 }
 //解析如下
 a:hover{color:red}
 a:active{color:blue}
+
+注：compass中采用中划线的方式命名
 </code></pre>
 
 <h4>
@@ -292,6 +288,24 @@ a{
   -moz-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
   transition: all 0.2s linear;
+}
+</code></pre>
+
+<h4>
+<a id="运算" class="anchor" href="#%E8%BF%90%E7%AE%97" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>运算</h4>
+
+<pre><code>body{
+  width:100%;
+}
+article{
+  width:600px / 1200px *100%;
+}
+//编译为
+body{
+  width:100%;
+}
+article{
+  width:50%；
 }
 </code></pre>
 
@@ -403,10 +417,83 @@ $i: 6;
 
 </code></pre>
 
+<h4>
+<a id="选择器" class="anchor" href="#%E9%80%89%E6%8B%A9%E5%99%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>选择器</h4>
+
+<blockquote>
+<p>子组合选择器 <code>&gt;</code> :选择一个元素的直接子元素
+同层相邻组合选择器 <code>+</code> :选择紧跟在后面的同级元素
+同层全体组合选择器 <code>~</code> :选择所有跟在后的同层元素</p>
+</blockquote>
+
+<h4>
+<a id="颜色函数" class="anchor" href="#%E9%A2%9C%E8%89%B2%E5%87%BD%E6%95%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>颜色函数</h4>
+
+<pre><code>$ sass -i
+&gt;&gt; rgb(200,40,88) //根据r:200,g:40,b:88计算出一个十六进制颜色值
+得出：#c82858
+&gt;&gt; rgba(#c82858,.65) //根据#c82858的65%透明度计算出一个rgba颜色值
+得出：rgba(200, 40, 88, 0.65)
+&gt;&gt; red(#c82858) //从#c82858颜色值中得到红色值200
+得出：200
+&gt;&gt; green(#c82858) //从#c82858颜色值中得到绿色值40
+得出：40
+&gt;&gt; blue(#c82858) //从#c82858颜色值中得到蓝色值88
+得出：88
+&gt;&gt; mix(#c82858,rgba(200,40,80,.65),.3) //把#c82858和rgba(200,40,88,.65)两颜色按比例混合得到一个新颜色
+rgba(200, 40, 80, 0.65105)
+&gt;&gt; lighten(red,10%)//将red颜色安装亮度值增加10%
+得出：#ff3333
+&gt;&gt; darken(red,10%)//将red颜色安装亮度值变暗10%
+得出：#cc0000
+&gt;&gt;complement(red)//获取red颜色的补充色
+得出#00ffff
+...
+</code></pre>
+
 <p><strong>注：详细参见<a href="http://sass-lang.com/">Sass官网</a></strong></p>
 
+<h2>
+<a id="compass框架" class="anchor" href="#compass%E6%A1%86%E6%9E%B6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compass框架</h2>
+
 <h3>
-<a id="sass调试" class="anchor" href="#sass%E8%B0%83%E8%AF%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sass调试</h3>
+<a id="介绍" class="anchor" href="#%E4%BB%8B%E7%BB%8D" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>介绍</h3>
+
+<blockquote>
+<p>Compass是一个强大的Sass框架，能够利用它写出可维护性更高的样式表。
+Compass由三个主要部分组成：混合器和实用工具的类库，能够集成到应用开发环境中的开发系统，以及一个用于构建框架和扩展的平台。<br>
+Compass自身包含了很多由Sass混合器和函数构成的模块，所有的这些模块在Compass的官网上都有详细的说明和示例。<br>
+这些库会帮助你解决跨浏览器兼容问题，以及提供给你很多已经被证明过的优秀模式，比如说重置、网格布局、列表样式、表格辅助器等。
+注：<a href="http://compass-style.org">Comapass官网</a></p>
+
+<h3>
+<a id="安装与使用" class="anchor" href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>安装与使用</h3>
+</blockquote>
+
+<p>使用命令行：  gem install compass（这样就创建好了）
+.e.g.<br>
+比如说先创建一个文件夹 mkdir compasstext,
+点击进入这个文件 cd compasstext,
+创建compass项目的文件 compass create mallApp,
+点击进入这个文件 cd mallApp,
+这个时候我们想要清楚 可以输入 compass clean
+如果想重新开始编译 可以输入 compass compile</p>
+
+<blockquote>
+<p>常见的命令操作
+自动编译：compass watch
+清除： compass clean
+重新开始编译：compass compile</p>
+</blockquote>
+
+<h3>
+<a id="安装" class="anchor" href="#%E5%AE%89%E8%A3%85" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>安装</h3>
+
+<h2>
+<a id="sass调试" class="anchor" href="#sass%E8%B0%83%E8%AF%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sass调试</h2>
+
+<h3>
+<a id="1koala调试方式" class="anchor" href="#1koala%E8%B0%83%E8%AF%95%E6%96%B9%E5%BC%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1、Koala调试方式</h3>
 
 <blockquote>
 <p>1.Koala上点击相应的文件，然后就会出现右边的编译选项，即可选择是否开启source map，debug info <br>
@@ -414,6 +501,9 @@ $i: 6;
 3.开启--sourcemap编译，f12打开调试面板，就可以看到原先右边的css文件变成了我们现在的scss文件<br>
 4.点击scss文件，会跳到source里面的scss源文件，现在可以在里面进行修改，修改完成后可以右键选择save或save as命令，然后替换我们本地的scss源文件，刷新chrome就可以看到变化（注意，解析样式需要一定时间）。以后只要ctrl+s保存修改就可以在浏览器中看到修改效果了。</p>
 </blockquote>
+
+<h3>
+<a id="2命令行调试方式" class="anchor" href="#2%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%B0%83%E8%AF%95%E6%96%B9%E5%BC%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2、命令行调试方式</h3>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/ggaoli/precompile">css预编译</a> is maintained by <a href="https://github.com/ggaoli">ggaoli</a>.</span>
