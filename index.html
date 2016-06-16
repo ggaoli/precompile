@@ -63,12 +63,11 @@
 <p>Stylus背景介绍</p>
 
 <blockquote>
-<p>Stylus，2010年产生，来自于Node.js社区，主要用来给Node项目进行CSS预处理支持，不过Stylus的人气相对于Sass和Less则逊色很多。</p>
+<p>Stylus，2010年产生，来自于Node.js社区，主要用来给Node项目进行CSS预处理支持，不过Stylus的人气相对于Sass和Less则逊色很多。
+注：Stylus官网：<a href="http://learnboost.github.com/stylus">http://learnboost.github.com/stylus</a></p>
 </blockquote>
 </li>
 </ul>
-
-<p>注：Stylus官网：<a href="http://learnboost.github.com/stylus">http://learnboost.github.com/stylus</a></p>
 
 <h3>
 <a id="2sass和less对比" class="anchor" href="#2sass%E5%92%8Cless%E5%AF%B9%E6%AF%94" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2、Sass和Less对比</h3>
@@ -90,24 +89,10 @@ Sass在市面上有一些成熟的框架，比如说<code>Compass</code>，而�
 </ul>
 </blockquote>
 
-<h3>
-<a id="3sass和less语法对比" class="anchor" href="#3sass%E5%92%8Cless%E8%AF%AD%E6%B3%95%E5%AF%B9%E6%AF%94" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3、Sass和Less语法对比</h3>
-
-<blockquote>
-<ul>
-<li>混入(Mixins)——class中的class；</li>
-<li>参数混入——可以传递参数的class，就像函数一样；</li>
-<li>嵌套规则——Class中嵌套class，从而减少重复的代码；</li>
-<li>运算——CSS中用上数学；</li>
-<li>颜色功能——可以编辑颜色；</li>
-<li>名字空间(namespace)——分组样式，从而可以被调用；</li>
-<li>作用域——局部修改样式；</li>
-<li>JavaScript 赋值——在CSS中使用JavaScript表达式赋值。</li>
-</ul>
-</blockquote>
-
 <h2>
 <a id="sass入门" class="anchor" href="#sass%E5%85%A5%E9%97%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sass入门</h2>
+
+<hr>
 
 <h3>
 <a id="sass环境安装" class="anchor" href="#sass%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sass环境安装</h3>
@@ -115,7 +100,7 @@ Sass在市面上有一些成熟的框架，比如说<code>Compass</code>，而�
 <p>编写scss代码，通过sass的工作引擎编译成css代码，最后的部署阶段，其实部署的是生成的css代码，从这个流程可以看出sass并不是万金流，使用命令行也好，使用服务端集成框架也好，使用图形用户界面工具也好，最关键的环节是输入css，从这里也可表现出sass就是帮助我们更快的写出具有高可维护性的css代码<br></p>
 
 <ul>
-<li>koala<br>
+<li>GUI工具 Koala<br>
 koala 是一款桌面程序，支持 less 、 sass 、 coffeescript 即时编译，帮助 web 开发者更高效地使用 less 、 sass 、 coffeescript 开发。
 下载： <a href="http://koala-app.com/index-zh.html">http://koala-app.com/index-zh.html</a>
 </li>
@@ -138,24 +123,21 @@ koala 是一款桌面程序，支持 less 、 sass 、 coffeescript 即时编译
 <li>
 <strong>gem uninstall sass --vertion=3.3.0</strong>(删除相应的程序包)</li>
 <li>
-<strong>vim main.scss</strong>(创建scss文件)</li>
-<li>
 <strong>sass main.scss main.css</strong>(将.scss文件编译成.css文件)</li>
-<li>mkdir workspace(创建工作区)</li>
-<li>cd workspace(进入工作区)</li>
+<li>
+<strong>sass --style compressed test.sass test.css</strong>（压缩文件）</li>
 </ul>
 </li>
-</ul>
-
-<h3>
-<a id="sass语法入门" class="anchor" href="#sass%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sass语法入门</h3>
-
-<h4>
-<a id="sass和scss的区别" class="anchor" href="#sass%E5%92%8Cscss%E7%9A%84%E5%8C%BA%E5%88%AB" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>sass和scss的区别：</h4>
-
-<p>sass有两种语法，一种是<code>sass</code>（缩排写法）,这种语法的文件需要以.sass扩展名。另一种则是在sass的基础上，对css3扩从的<code>scss</code>，这种语法的文件需要以.scss扩展名。<br>
+<li>自动化构建工具 gulp
+注：<a href="http://www.gulpjs.com.cn/">Gulp官网</a>
+</li>
+<li>服务端集成工具之 webStorm
+###Sass语法入门
+####sass和scss的区别：
+sass有两种语法，一种是<code>sass</code>（缩排写法）,这种语法的文件需要以.sass扩展名。另一种则是在sass的基础上，对css3扩从的<code>scss</code>，这种语法的文件需要以.scss扩展名。<br>
 第一种sass语法，是不使用花国号，对空格 换行 敏感，通过缩排的方式来表达选择符，语法特点是更加简洁，像习惯编写ruby phthon的人可以可能会比较喜欢。<br>
-第二种scss语法，延续之前的css语法，大多数地道的前端团队会选择scss</p>
+第二种scss语法，延续之前的css语法，大多数地道的前端团队会选择scss</li>
+</ul>
 
 <pre><code>/*sass语法*/
 h3
@@ -169,12 +151,7 @@ h3{
 }
 </code></pre>
 
-<p>使用命令行转换格式： sass-convert main.scss main.sass
-在开始之前，我们先是用compass创建一个测试项目
-compass create compass-syntax
-监听当前目录下sass文件的变化
-cd compass-syntax
-compass watch</p>
+<p>使用命令行转换格式： sass-convert main.scss main.sass</p>
 
 <h4>
 <a id="嵌套nesting" class="anchor" href="#%E5%B5%8C%E5%A5%97nesting" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>嵌套(Nesting)</h4>
@@ -184,14 +161,11 @@ compass watch</p>
       ul{
         li{
         color:red;
-          a{
-            border: 1px 0  0 #ddd;
-          }
           &amp;:nth-child(1) a,&amp;:nth-child(2) a{
             border-right:none;
           }
-          &amp;:nth-child(3) a,&amp;:nth-child(4) a{
-            border-bottom:none;
+           a{
+            border: 1px 0  0 #ddd;
           }
         }
       }
@@ -203,8 +177,6 @@ compass watch</p>
      border-bottom: 1px solid #ddd; }
    .recom-r ul li:nth-child(1) a, .products-recom .modcon .recom-r ul li:nth-child(2) a {
      border-right: none; }
-  .recom-r ul li:nth-child(3) a, .products-recom .modcon .recom-r ul li:nth-child(4) a {
-     border-bottom: none; }
 
 
      /***属性嵌套嵌套***/
@@ -341,43 +313,6 @@ article{
 </code></pre>
 
 <h4>
-<a id="占位选择器" class="anchor" href="#%E5%8D%A0%E4%BD%8D%E9%80%89%E6%8B%A9%E5%99%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>占位选择器%</h4>
-
-<pre><code>%clear{
-  &amp;:before,
-  &amp;:before, {
-    content: "";
-    display: table;
-    font: 0/0 a;
-  }
-  &amp;:after {
-    clear: both;
-  }
-}
-.clearfix{
-  @extent %clear;
-}
-.row{
-  @extent %clear;
-  width:1200px;
-  margin:0 aut0;
-}
-//编译为
-.row, .clearfix:before, .clearfix:after{
-    content: "";
-    display: table;
-    font: 0/0 a;
-}
- .clearfix:after, .row:after{
-    clear: both;
- }
- .row{
-  width:1200px;
-  margin:0 aut0;
- }
-</code></pre>
-
-<h4>
 <a id="控制指令" class="anchor" href="#%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>控制指令</h4>
 
 <pre><code>/******@if******/
@@ -424,34 +359,34 @@ $i: 6;
 <p>子组合选择器 <code>&gt;</code> :选择一个元素的直接子元素
 同层相邻组合选择器 <code>+</code> :选择紧跟在后面的同级元素
 同层全体组合选择器 <code>~</code> :选择所有跟在后的同层元素</p>
-</blockquote>
 
 <h4>
 <a id="颜色函数" class="anchor" href="#%E9%A2%9C%E8%89%B2%E5%87%BD%E6%95%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>颜色函数</h4>
 
 <pre><code>$ sass -i
-&gt;&gt; rgb(200,40,88) //根据r:200,g:40,b:88计算出一个十六进制颜色值
+&gt; rgb(200,40,88) //根据r:200,g:40,b:88计算出一个十六进制颜色值
 得出：#c82858
-&gt;&gt; rgba(#c82858,.65) //根据#c82858的65%透明度计算出一个rgba颜色值
+&gt; rgba(#c82858,.65) //根据#c82858的65%透明度计算出一个rgba颜色值
 得出：rgba(200, 40, 88, 0.65)
-&gt;&gt; red(#c82858) //从#c82858颜色值中得到红色值200
+&gt; red(#c82858) //从#c82858颜色值中得到红色值200
 得出：200
-&gt;&gt; green(#c82858) //从#c82858颜色值中得到绿色值40
+&gt; green(#c82858) //从#c82858颜色值中得到绿色值40
 得出：40
-&gt;&gt; blue(#c82858) //从#c82858颜色值中得到蓝色值88
+&gt; blue(#c82858) //从#c82858颜色值中得到蓝色值88
 得出：88
-&gt;&gt; mix(#c82858,rgba(200,40,80,.65),.3) //把#c82858和rgba(200,40,88,.65)两颜色按比例混合得到一个新颜色
+&gt; mix(#c82858,rgba(200,40,80,.65),.3) //把#c82858和rgba(200,40,88,.65)两颜色按比例混合得到一个新颜色
 rgba(200, 40, 80, 0.65105)
-&gt;&gt; lighten(red,10%)//将red颜色安装亮度值增加10%
+&gt; lighten(red,10%)//将red颜色安装亮度值增加10%
 得出：#ff3333
-&gt;&gt; darken(red,10%)//将red颜色安装亮度值变暗10%
+&gt; darken(red,10%)//将red颜色安装亮度值变暗10%
 得出：#cc0000
-&gt;&gt;complement(red)//获取red颜色的补充色
+&gt;complement(red)//获取red颜色的补充色
 得出#00ffff
 ...
 </code></pre>
 
 <p><strong>注：详细参见<a href="http://sass-lang.com/">Sass官网</a></strong></p>
+</blockquote>
 
 <h2>
 <a id="compass框架" class="anchor" href="#compass%E6%A1%86%E6%9E%B6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compass框架</h2>
@@ -467,27 +402,204 @@ Compass自身包含了很多由Sass混合器和函数构成的模块，所有的
 注：<a href="http://compass-style.org">Comapass官网</a></p>
 
 <h3>
-<a id="安装与使用" class="anchor" href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>安装与使用</h3>
+<a id="安装" class="anchor" href="#%E5%AE%89%E8%A3%85" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>安装</h3>
 </blockquote>
 
-<p>使用命令行：  gem install compass（这样就创建好了）
-.e.g.<br>
-比如说先创建一个文件夹 mkdir compasstext,
+<p>使用命令行：  gem install compass（这样就创建好了）</p>
+
+<h3>
+<a id="项目初始化" class="anchor" href="#%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>项目初始化</h3>
+
+<p>先创建一个文件夹 mkdir compasstext,
 点击进入这个文件 cd compasstext,
 创建compass项目的文件 compass create mallApp,
 点击进入这个文件 cd mallApp,
 这个时候我们想要清楚 可以输入 compass clean
-如果想重新开始编译 可以输入 compass compile</p>
+如果想重新开始编译 可以输入 compass compile
+开启监听 可以输入：compass watch</p>
 
 <blockquote>
-<p>常见的命令操作
-自动编译：compass watch
-清除： compass clean
-重新开始编译：compass compile</p>
+<p>常见的命令操作 输入<code>compass -h</code>进行查看</p>
 </blockquote>
 
 <h3>
-<a id="安装" class="anchor" href="#%E5%AE%89%E8%A3%85" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>安装</h3>
+<a id="编译" class="anchor" href="#%E7%BC%96%E8%AF%91" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>编译</h3>
+
+<blockquote>
+<ul>
+<li>Compass的编译命令是：compass compile <br> 注：该命令是在项目根目录下运行，会将sass子目录中的scss文件编译成css文件，保存再stylesheets子目录中<br>
+</li>
+<li>Compass的压缩命令是：compass commpile -- output-style compressed<br> 注：compass只编译发生变动的文件，如果需要重新编译未变动的文件，需要使用 compass compile --force<br>
+</li>
+<li>Compass自动编译：compass watch<br>
+运行该命令后，只要scss文件发生变化，就会自动编译成css文件，并且在cmd上导出文件变化的具体信息</li>
+</ul>
+</blockquote>
+
+<h3>
+<a id="compass模块" class="anchor" href="#compass%E6%A8%A1%E5%9D%97" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compass模块</h3>
+
+<p>compass采用模块的结构，不同的模块提供不同的功能，总共内置了五个模块：<br></p>
+
+<ul>
+<li>[ ] resect </li>
+<li>[ ] css3</li>
+<li>[ ] layout</li>
+<li>[ ] typography</li>
+<li><p>[ ] utulities
+注：除了内置的5个模块外，还可以自行加载网上的第三方模块或者手动编写</p></li>
+<li><p><strong>resect模块</strong>
+这个模块的内容是一些初始化样式，也就是说我们需要重置的浏览器默认样式的样式代码
+写法是： <a href="https://github.com/import" class="user-mention">@import</a> "compass/reset"；</p></li>
+<li>
+<strong>css3模块</strong>
+目前这个模块提供19种css3命令<br>
+首先需要导入css3模块，写法是:  <a href="https://github.com/import" class="user-mention">@import</a> "compass/css3"<br>
+比如<strong>圆角</strong>，写法如下：</li>
+</ul>
+
+<pre><code>.rounded {
+   @include border-radius(5px);
+}
+//编译后
+.rounded {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+}
+</code></pre>
+
+<p>比如<strong>行内区块</strong>，写法如下：</p>
+
+<pre><code>#inline-block {
+     @include inline-block;
+}
+//编译后
+#inline-block {
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    *vertical-align: auto;
+    zoom: 1;
+}
+</code></pre>
+
+<p>比如<strong>透明</strong>，写法如下：</p>
+
+<pre><code>#opacity {
+    @include opacity(0.5); 
+}
+//编译后
+ #opacity {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0.5);
+    opacity: 0.5;
+}
+</code></pre>
+
+<ul>
+<li>
+<strong>layout模块</strong>
+该模块顾名思义就是提供布局功能(使用率较低)
+首先需要导入layout模块，写法是:  <a href="https://github.com/import" class="user-mention">@import</a> "compass/layout"<br>
+</li>
+</ul>
+
+<pre><code>//指定页面的footer部分总是出现在浏览器最底端：
+#footer {
+    @include sticky-footer(54px);
+}
+//指定子元素占满父元素的空间：
+#stretch-full {
+    @include stretch; 
+}
+//编译为
+#stretch-full {
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+}
+</code></pre>
+
+<ul>
+<li>
+<strong>typography模块</strong>
+该模块提供版式功能。首先需要导入typography模块，写法是:  <a href="https://github.com/import" class="user-mention">@import</a> "compass/typography"<br>
+</li>
+</ul>
+
+<p>比如指定链接颜色的mixin为：</p>
+
+<pre><code> link-colors($normal, $hover, $active, $visited, $focus);
+</code></pre>
+
+<p>使用时写成：</p>
+
+<pre><code>a {
+    @include link-colors(#00c, #0cc, #c0c, #ccc, #cc0);
+}
+</code></pre>
+
+<ul>
+<li>
+<strong>utilities模块</strong>
+该模块提供某些不属于其他模块的功能。
+首先需要导入utilities模块，写法是:  <a href="https://github.com/import" class="user-mention">@import</a> "compass/utilities"<br>
+比如<strong>清除浮动</strong>,写法如下:</li>
+</ul>
+
+<pre><code>.clearfix {
+    @include clearfix;
+}
+//编译为
+.clearfix {
+  overflow: hidden;
+  *zoom: 1;
+}
+
+</code></pre>
+
+<p>比如<strong>表格</strong>,写法如下:</p>
+
+<pre><code>table {
+    @include table-scaffolding;
+}
+//编译后
+table th {
+    text-align: center;
+    font-weight: bold;
+}
+table td,
+table th {
+     padding: 2px;
+}
+table td.numeric,
+table th.numeric {
+    text-align: right;
+}
+
+</code></pre>
+
+<p>比如<strong>制作雪碧图（Sprite）</strong>
+个人认为这个是compass中的重中之中，实在太强大。
+你需要将合并的图片放在一个文件夹下面，compass会自动合并成一张图片，并且设定好坐标
+写法如下：</p>
+
+<pre><code>@import "icons/*.png"; @include all-icons-sprites; //all-後面接著的「icons」代表文件夹的名称
+//编译后
+.icons-sprite, .icons-facebook, .icons-twitter, .icons-yahoo { 
+    background: url('icons-s0859518ac7.png') no-repeat;
+} 
+.icons-facebook { background-position: 0 0; }
+.icons-twitter { background-position: 0 -32px; } 
+.icons-yahoo { background-position: 0 -64px; } 
+</code></pre>
+
+<p>注：功能太多，详细查看<a href="http://compass-style.org">Comapass官网</a></p>
 
 <h2>
 <a id="sass调试" class="anchor" href="#sass%E8%B0%83%E8%AF%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sass调试</h2>
